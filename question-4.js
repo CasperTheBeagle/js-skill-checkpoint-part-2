@@ -14,7 +14,7 @@ const alphaTech = [
     { name: 'Grace', age: 20, department: 'Engineering' }
   ];
   
-// Part #1 : รวมข้อมูลพนักงานจากทั้ง 3 บริษัทให้อยู่ใน Array เดียว
+// Part #1 : การรวบรวมข้อมูลพนักงานจากทุกบริษัท
 const alphaTechWithCompany = alphaTech.map(employee => ({
   ...employee,
   company: "alphaTech"
@@ -25,25 +25,25 @@ const betaSoftWithCompany = betaSoft.map(employee => ({
   company: "betaSoft"
 }));
 
-// Debugging Part #1 : เพิ่มการ Map ข้อมูลของ gammaDev ที่เดิมขาดไป
+// Debugging Point Part #1 : จัดการข้อมูลบริษัท gammaDev และรวม Array ให้ครบทั้ง 3 บริษัท
+// เพิ่มการ Map ข้อมูลของ gammaDev ที่เดิมขาดไป
 const gammaDevWithCompany = gammaDev.map(employee => ({
   ...employee,
   company: "gammaDev"
 }));
 
 // Part #2 : รวมพนักงาน(allEmployees)จาก "ทุกบริษัท" 
-// เข้าด้วยกันเปลี่ยนเป็น 3 บริษัท จากเดิมรวมแค่ 2 บริษัท 
+// Debugging Point Part #2-1 : เข้าด้วยกันเปลี่ยนเป็น 3 บริษัท จากเดิมรวมแค่ 2 บริษัท 
 const allEmployees = [...alphaTechWithCompany, ...betaSoftWithCompany, ...gammaDevWithCompany];// [ ... , ] 3 บริษัท 
 
-// // Fix Debugging Point #2: แก้ไขตัวสะกดแผนก และการเข้าถึงชื่อบริษัท (Company) ของแต่ละคน
+// Debugging Point Part #2-2: แก้ไขตัวสะกดแผนก และการเข้าถึงชื่อบริษัท (Company) ของแต่ละคน
 const result = allEmployees.filter((employee) => {
   // Edit : 'Enginring' เป็น 'Engineering' และตรวจสอบอายุ >= 20
   return employee.department === 'Engineering' && employee.age >= 20;
 }).map((employee) => {
   return {
     name: employee.name,
-    // เปลี่ยนจากค่าว่าง ('') เป็นการดึงค่าจาก Property ของ company ซึ่งเป็นของemployee คนนั้น
-    company: employee.company 
+    company: employee.company // เปลี่ยนจากค่าว่าง ('') เป็นการดึงค่าจาก Property ของ company ซึ่งเป็นของemployee คนนั้น
   };
 });
 
